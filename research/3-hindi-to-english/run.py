@@ -7,13 +7,13 @@ import os
 # Initialize the Translator
 translator = Translator()
 
-# Function to translate from English to Gujarati
+# Function to translate from Hindi to English
 def translator_fun(text):
-    return translator.translate(text, src='en', dest='gu')
+    return translator.translate(text, src='hi', dest='en')
 
-# Function to convert text to Gujarati speech and play it
+# Function to convert text to speech and play it
 def text_to_voice(text_data):
-    myobj = gTTS(text=text_data, lang='gu', slow=False)
+    myobj = gTTS(text=text_data, lang='en', slow=False)
     myobj.save("cache_file.mp3")
     playsound.playsound("cache_file.mp3")
     os.remove("cache_file.mp3")  # Remove the file after playing
@@ -29,18 +29,18 @@ while True:
 
     try:
         print("Processing...")
-        # Recognize the spoken text (assumed to be in English)
-        spoken_text = rec.recognize_google(audio, language='en')
-        print(f"Recognized (English): {spoken_text}")
+        # Recognize the spoken text (assumed to be in Hindi)
+        spoken_text = rec.recognize_google(audio, language='hi')
+        print(f"Recognized (Hindi): {spoken_text}")
 
-        # Translate the recognized text to Gujarati
-        print("Translating to Gujarati...")
-        gujarati_version = translator_fun(spoken_text)
-        print(f"Translation (Gujarati): {gujarati_version.text}")
+        # Translate the recognized text to English
+        print("Translating to English...")
+        translated_text = translator_fun(spoken_text)
+        print(f"Translation (English): {translated_text.text}")
 
-        # Convert the translated Gujarati text to speech
-        print("Converting text to Gujarati speech...")
-        text_to_voice(gujarati_version.text)
+        # Convert the translated English text to speech
+        print("Converting text to speech...")
+        text_to_voice(translated_text.text)
 
     except sr.UnknownValueError:
         print("Could not understand the audio")

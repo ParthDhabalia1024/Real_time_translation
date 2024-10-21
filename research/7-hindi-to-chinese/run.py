@@ -7,7 +7,7 @@ import os
 translator = Translator()
 
 def translator_fun(text):
-    return translator.translate(text, src='si', dest='zh-CN')
+    return translator.translate(text, src='hi', dest='zh-CN')
 
 def text_to_voice(text_data):
     myobj = gTTS(text=text_data, lang='zh-CN', slow=False)
@@ -24,13 +24,17 @@ while True:
         audio = rec.listen(source, phrase_time_limit=10)
     try:
         print("Processing...")
-        spoken_text = rec.recognize_google(audio, language='si')
+        spoken_text = rec.recognize_google(audio, language='hi')
         
         print("Translating...")
-        tamil_version = translator_fun(spoken_text)
+        chinese_version = translator_fun(spoken_text)
 
         print("Text to Speech...")
-        text_to_voice(tamil_version.text)
+        text_to_voice(chinese_version.text)
    
+    except sr.UnknownValueError:
+        print("Could not understand the audio")
+    except sr.RequestError as e:
+        print(f"Could not request results; {e}")
     except Exception as e:
-        print(e)
+        print(f"An error occurred: {e}")

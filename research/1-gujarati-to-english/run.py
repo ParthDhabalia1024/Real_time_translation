@@ -32,5 +32,9 @@ while True:
         print("Text to Speech...")
         text_to_voice(gujarati_version.text)
    
+    except sr.UnknownValueError:
+        print("Could not understand the audio")
+    except sr.RequestError as e:
+        print(f"Could not request results; {e}")
     except Exception as e:
-        print(e)
+        print(f"An error occurred: {e}")

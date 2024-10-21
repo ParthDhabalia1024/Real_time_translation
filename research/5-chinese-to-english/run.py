@@ -27,10 +27,14 @@ while True:
         spoken_text = rec.recognize_google(audio, language='zh-CN')
         
         print("Translating...")
-        tamil_version = translator_fun(spoken_text)
+        english_version = translator_fun(spoken_text)
 
         print("Text to Speech...")
-        text_to_voice(tamil_version.text)
+        text_to_voice(english_version.text)
    
+    except sr.UnknownValueError:
+        print("Could not understand the audio")
+    except sr.RequestError as e:
+        print(f"Could not request results; {e}")
     except Exception as e:
-        print(e)
+        print(f"An error occurred: {e}")
