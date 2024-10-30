@@ -74,6 +74,7 @@ def main_process(output_placeholder, from_language, to_language):
 
 # Streamlit UI layout
 st.title("Language Translator")
+st.title("Hi Parth ...what would you like to translate today..? ")
 
 # Dropdowns for selecting languages
 from_language_name = st.selectbox("Select Source Language:", list(LANGUAGES.values()))
