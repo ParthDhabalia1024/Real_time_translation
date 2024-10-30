@@ -38,7 +38,7 @@ A voice recognition-based tool for translating languages in real-time. This tool
 - **Step 02:** Navigate to the source directory.
 
   ```
-   language-translator-bot/soruce/main.py
+   language-translator-bot/source/main.py
   ```
 
 
